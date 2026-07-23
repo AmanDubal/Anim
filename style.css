@@ -1,0 +1,208 @@
+:root {
+    --bg: #00050b;
+    --text: #f5faff;
+    --muted: #cfe0ee;
+    --line: rgba(255, 255, 255, 0.18);
+    --accent: #7fd8ff;
+    --accent-2: #9effc7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    font-family: "Sora", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    overflow-x: hidden;
+}
+
+#loader {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #051425 0%, #010206 70%);
+    z-index: 9999;
+    transition: opacity 0.45s ease;
+}
+
+#loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#loader-box {
+    width: min(260px, 70vw);
+    height: 3px;
+    border-radius: 40px;
+    background: rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+}
+
+#loader-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ecf4ff, #9fd7ff);
+}
+
+#loader-text {
+    margin-top: 12px;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #d7e7f7;
+}
+
+.canvas-wrapper {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+#frame-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Brightened again: darkness dropped further, background almost fully visible now. */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(3, 8, 14, 0.06), rgba(3, 8, 14, 0.14)),
+        radial-gradient(circle at 20% 25%, rgba(64, 158, 230, 0.05), transparent 55%);
+    z-index: 1;
+}
+
+/* Brightened: less aggressive vignette so the edges of each frame stay visible. */
+/* Brightened again: even lighter now, only a faint edge darkening remains. */
+.vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, transparent 55%, rgba(0, 0, 0, 0.16) 100%);
+    z-index: 3;
+    pointer-events: none;
+}
+
+.hud {
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 20;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(4, 13, 22, 0.42);
+    backdrop-filter: blur(6px);
+}
+
+.hud-name {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.35rem;
+    letter-spacing: 0.08em;
+}
+
+.hud-progress {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.story-track {
+    position: relative;
+    z-index: 10;
+    background: transparent;
+}
+
+.scene-marker {
+    min-height: 130vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.scene-marker:last-child {
+    min-height: 110vh;
+}
+
+.scene-content {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    pointer-events: none;
+
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.scene-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scene-content h1,
+.scene-content h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-size: clamp(34px, 6.4vw, 68px);
+    letter-spacing: 0.04em;
+    margin: 0 0 14px;
+    color: var(--text);
+    text-shadow: 0 0 28px rgba(127, 216, 255, 0.35);
+}
+
+.scene-content p {
+    font-size: clamp(15px, 1.7vw, 19px);
+    line-height: 1.65;
+    color: var(--muted);
+    margin: 0;
+    max-width: 46ch;
+}
+
+@media (max-width: 720px) {
+    .scene-marker {
+        min-height: 120vh;
+    }
+
+    .hud {
+        top: 10px;
+        left: 10px;
+        padding: 8px 10px;
+    }
+
+    .hud-name {
+        font-size: 1.1rem;
+    }
+
+    .hud-progress {
+        font-size: 0.62rem;
+    }
+}

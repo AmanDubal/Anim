@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alex Carter | Cave Journey</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="loader">
+        <div id="loader-box">
+            <div id="loader-fill"></div>
+        </div>
+        <span id="loader-text">0%</span>
+    </div>
+
+    <div class="canvas-wrapper">
+        <canvas id="frame-canvas"></canvas>
+        <div class="overlay"></div>
+        <div class="vignette"></div>
+    </div>
+
+    <header class="hud">
+        <p class="hud-name">Alex Carter</p>
+        <p class="hud-progress"><span id="journey-progress">0%</span> Depth</p>
+    </header>
+
+    <main class="story-track" aria-label="Cinematic portfolio journey">
+
+        <section class="scene-marker" data-scene="0" aria-label="Intro scene">
+            <div class="scene-content">
+                <h1>Cinematic Frontend Experiences</h1>
+                <p>A continuous journey through code, motion, and atmosphere — scroll to descend.</p>
+            </div>
+        </section>
+
+        <section class="scene-marker" data-scene="1" aria-label="About scene">
+            <div class="scene-content">
+                <h2>About Alex Carter</h2>
+                <p>Creative web developer building immersive, high-performance products for brands
+                    that want their site to feel like an experience, not a page.</p>
+            </div>
+        </section>
+
+        <section class="scene-marker" data-scene="2" aria-label="Philosophy scene">
+            <div class="scene-content">
+                <h2>How I Work</h2>
+                <p>Design and engineering happen in the same breath here — motion, performance, and
+                    story are never bolted on after the fact.</p>
+            </div>
+        </section>
+
+        <section class="scene-marker" data-scene="3" aria-label="Skills scene">
+            <div class="scene-content">
+                <h2>Skills</h2>
+                <p>HTML5, CSS3, JavaScript, TypeScript, React, Next.js, Three.js, GSAP, Framer Motion.</p>
+            </div>
+        </section>
+
+        <section class="scene-marker" data-scene="4" aria-label="Experience scene">
+            <div class="scene-content">
+                <h2>Experience</h2>
+                <p>Senior Frontend Developer at Creative Studio. Frontend Developer at Digital Agency.
+                    Six years turning ambitious briefs into shipped, scroll-ready builds.</p>
+            </div>
+        </section>
+
+        <section class="scene-marker" data-scene="5" aria-label="Process scene">
+            <div class="scene-content">
+                <h2>Process</h2>
+                <p>Discover. Prototype. Build. Polish. Ship. Every project moves through the same five
+                    beats, tuned to the size of the problem.</p>
+            </div>
+        </section>
+
+        <section class="scene-marker" data-scene="6" aria-label="Projects scene">
+            <div class="scene-content">
+                <h2>Projects</h2>
+                <p>Nova Studio. Aurora Commerce. Motion Portfolio. Selected work spanning product,
+                    commerce, and storytelling sites.</p>
+            </div>
+        </section>
+
+        <section class="scene-marker" data-scene="7" aria-label="Awards scene">
+            <div class="scene-content">
+                <h2>Recognition</h2>
+                <p>Awwwards Site of the Day. CSS Design Awards nominee. Featured on FWA.</p>
+            </div>
+        </section>
+
+        <section class="scene-marker" data-scene="8" aria-label="Testimonials scene">
+            <div class="scene-content">
+                <h2>Testimonials</h2>
+                <p>Exceptional quality. Creative and reliable. Built for impact — and delivered on time,
+                    every time.</p>
+            </div>
+        </section>
+
+        <section class="scene-marker" data-scene="9" aria-label="Services scene">
+            <div class="scene-content">
+                <h2>Services</h2>
+                <p>Website Design. Frontend Development. UI/UX Design. Interactive Storytelling.</p>
+            </div>
+        </section>
+
+        <section class="scene-marker" data-scene="10" aria-label="Statistics scene">
+            <div class="scene-content">
+                <h2>Statistics</h2>
+                <p>50+ Projects. 30+ Clients. 6+ Years. 99% Satisfaction.</p>
+            </div>
+        </section>
+
+        <section class="scene-marker" data-scene="11" aria-label="Contact scene">
+            <div class="scene-content">
+                <h2>Contact</h2>
+                <p>alex@example.com &nbsp;|&nbsp; +1 555 123 4567</p>
+            </div>
+        </section>
+
+        <section class="scene-marker" data-scene="12" aria-label="Outro scene">
+            <div class="scene-content">
+                <h2>End of Expedition</h2>
+                <p>Thanks for exploring the cave with me.</p>
+                <br>Made by Aman Dubal</br>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
