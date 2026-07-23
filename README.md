@@ -1,4 +1,4 @@
-# Alex Carter | Cave Journey Portfolio
+# Ms. Bangera Portfolio
 
 A high-performance, scroll-driven cinematic portfolio experience featuring 2,354 pre-rendered frames that animate in sync with scroll position. This project demonstrates advanced web performance optimization, canvas rendering, and interactive storytelling through immersive animation.
 
