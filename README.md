@@ -162,6 +162,129 @@ Edit CSS variables in `style.css`:
 }
 ```
 
+## Converting Video to Frame Sequence
+
+This project requires a sequence of individual image frames extracted from video. Here are two methods to convert your video files:
+
+### Method 1: Using ExGif (Web-Based)
+
+**ExGif** is an online tool for converting video to image sequences with a simple GUI.
+
+**Steps:**
+
+1. Visit [ExGif.com](https://exgif.com/) or similar video-to-frames converter
+2. Upload your video file (MP4, MOV, WebM, etc.)
+3. Configure extraction settings:
+   - **Frame Rate**: Set to your target FPS (e.g., 60fps for smooth animation)
+   - **Output Format**: Select JPG for smaller file size
+   - **Quality**: Set to 80-90% for balance between quality and size
+4. Click "Convert" and wait for processing
+5. Download the ZIP file containing all extracted frames
+6. Extract frames and rename them in the pattern: `frame-0001.jpg`, `frame-0002.jpg`, etc.
+7. Place frames in the `Frames/` directory
+
+**Pros:**
+- No software installation required
+- Simple point-and-click interface
+- Quick for small-to-medium videos
+
+**Cons:**
+- File size limits on most free services
+- Less control over output parameters
+- Slower for large videos
+
+### Method 2: Using FFmpeg (Command Line)
+
+**FFmpeg** is a powerful, free, open-source multimedia framework for frame extraction with full control.
+
+**Installation:**
+
+- **Windows**: Download from [ffmpeg.org](https://ffmpeg.org/download.html) or use `choco install ffmpeg`
+- **macOS**: `brew install ffmpeg`
+- **Linux**: `apt-get install ffmpeg` (Debian/Ubuntu)
+
+**Basic Command:**
+
+Extract all frames from a video at 60fps:
+
+```bash
+ffmpeg -i input_video.mp4 -vf "fps=60" Frames/frame-%04d.jpg
+```
+
+**Command Breakdown:**
+- `-i input_video.mp4` — Input video file
+- `-vf "fps=60"` — Extract at 60 frames per second
+- `Frames/frame-%04d.jpg` — Output pattern (%04d = zero-padded 4-digit number)
+
+**Advanced Examples:**
+
+Extract frames with custom quality (1-31, lower = better):
+
+```bash
+ffmpeg -i input_video.mp4 -vf "fps=60" -q:v 2 Frames/frame-%04d.jpg
+```
+
+Extract frames at specific resolution (scale to 1920x1080):
+
+```bash
+ffmpeg -i input_video.mp4 -vf "fps=60,scale=1920:1080" Frames/frame-%04d.jpg
+```
+
+Extract specific time range (first 30 seconds):
+
+```bash
+ffmpeg -i input_video.mp4 -t 30 -vf "fps=60" Frames/frame-%04d.jpg
+```
+
+Extract frames with aspect ratio preservation:
+
+```bash
+ffmpeg -i input_video.mp4 -vf "fps=60,scale=1920:-1" Frames/frame-%04d.jpg
+```
+
+**Batch Process Multiple Videos:**
+
+```bash
+for video in *.mp4; do
+  mkdir -p "Frames_${video%.*}"
+  ffmpeg -i "$video" -vf "fps=60" "Frames_${video%.*}/frame-%04d.jpg"
+done
+```
+
+**Pros:**
+- Free and open-source
+- Full control over parameters
+- Fast processing on local machine
+- Handles large files efficiently
+- Batch processing capabilities
+
+**Cons:**
+- Requires command-line knowledge
+- Installation needed
+- Steeper learning curve
+
+**Recommended FFmpeg Settings for This Project:**
+
+```bash
+ffmpeg -i video.mp4 -vf "fps=60" -q:v 3 Frames/frame-%04d.jpg
+```
+
+This extracts frames at 60fps with good quality balance. Adjust `-q:v` (2-5) based on file size constraints.
+
+**Verify Frame Count:**
+
+After extraction, count frames to ensure all were extracted:
+
+```bash
+# Windows (PowerShell)
+(Get-ChildItem -Path Frames -Filter "*.jpg" | Measure-Object).Count
+
+# Linux/macOS
+ls -1 Frames | wc -l
+```
+
+Then update `CONFIG.frameCount` in `script.js` with the actual frame count.
+
 ## Browser Developer Tools
 
 Open DevTools to monitor:
